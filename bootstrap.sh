@@ -8,6 +8,11 @@ if ! command -v git &> /dev/null || ! command -v wget &> /dev/null; then
     sudo apt-get update && sudo apt-get install -y git wget
 fi
 
+if ! command -v acme.sh &> /dev/null && [ ! -x "/root/.acme.sh/acme.sh" ]; then
+    echo "Installing acme.sh..."
+    curl -fsSL https://get.acme.sh | sh -s email=root@localhost
+fi
+
 INSTALL_DIR="/opt/linux-toolbox"
 REPO_URL="https://github.com/UtopiaLee/CharosTool.git"
 
