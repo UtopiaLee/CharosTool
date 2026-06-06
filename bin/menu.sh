@@ -8,30 +8,45 @@ while true; do
     echo "=================================="
     echo "      CharosTool 工具菜单"
     echo "=================================="
-    echo "1. 申请 SSL 证书"
-    echo "2. 安装/配置 Proxy API"
-    echo "3. 更新工具箱"
-    echo "4. 健康检查"
-    echo "5. 退出"
+    echo "1. 安装/更新并启动 CLIProxyAPI"
+    echo "2. 启动 CLIProxyAPI 服务"
+    echo "3. 停止 CLIProxyAPI 服务"
+    echo "4. 重启 CLIProxyAPI 服务"
+    echo "5. 查看 CLIProxyAPI 状态"
+    echo "6. 修改管理密码"
+    echo "7. 更新工具箱"
+    echo "8. 健康检查"
+    echo "9. 退出"
     echo "=================================="
-    read -p "请选择一个选项 [1-5]: " option
+    read -p "请选择一个选项 [1-9]: " option
     echo ""
     case $option in
         1)
             read -p "请输入域名: " domain
-            sudo "$TOOLBOX_DIR/bin/request_ssl.sh" "$domain"
-            ;;
-        2)
-            read -p "请输入域名: " domain
             sudo "$TOOLBOX_DIR/bin/install_proxy.sh" "$domain"
             ;;
+        2)
+            sudo "$TOOLBOX_DIR/bin/install_proxy.sh" start
+            ;;
         3)
-            "$TOOLBOX_DIR/bin/update_toolbox.sh"
+            sudo "$TOOLBOX_DIR/bin/install_proxy.sh" stop
             ;;
         4)
-            "$TOOLBOX_DIR/bin/health_check.sh"
+            sudo "$TOOLBOX_DIR/bin/install_proxy.sh" restart
             ;;
         5)
+            sudo "$TOOLBOX_DIR/bin/install_proxy.sh" status
+            ;;
+        6)
+            sudo "$TOOLBOX_DIR/bin/install_proxy.sh" password
+            ;;
+        7)
+            "$TOOLBOX_DIR/bin/update_toolbox.sh"
+            ;;
+        8)
+            "$TOOLBOX_DIR/bin/health_check.sh"
+            ;;
+        9)
             echo "正在退出..."
             exit 0
             ;;
