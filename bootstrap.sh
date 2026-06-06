@@ -14,11 +14,9 @@ echo "Installing Linux Toolbox to $INSTALL_DIR..."
 
 if [ -d "$INSTALL_DIR" ]; then
     echo "Updating existing installation..."
-    cd "$INSTALL_DIR"
-    sudo git reset --hard HEAD
-    sudo git clean -fd
-    sudo git fetch origin master
-    sudo git reset --hard origin/master
+    sudo rm -rf "$INSTALL_DIR"
+    echo "Cloning repository..."
+    sudo git clone https://github.com/UtopiaLee/CharosTool.git "$INSTALL_DIR"
 else
     echo "Cloning repository..."
     sudo git clone https://github.com/UtopiaLee/CharosTool.git "$INSTALL_DIR"
