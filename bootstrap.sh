@@ -22,4 +22,5 @@ else
 fi
 
 echo "Starting installer..."
+sudo chmod +x "$INSTALL_DIR/install.sh"
 sudo "$INSTALL_DIR/install.sh"
