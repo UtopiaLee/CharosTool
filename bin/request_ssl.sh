@@ -11,7 +11,7 @@ fi
 
 if [ -z "$ACME_BIN" ]; then
     log_info "acme.sh is not installed. Installing acme.sh..."
-    curl -fsSL https://get.acme.sh | sh -s email=root@localhost
+    curl -fsSL https://get.acme.sh | sh -s email=root@example.com
     ACME_BIN="/root/.acme.sh/acme.sh"
 fi
 

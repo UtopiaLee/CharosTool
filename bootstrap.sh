@@ -10,7 +10,7 @@ fi
 
 if ! command -v acme.sh &> /dev/null && [ ! -x "/root/.acme.sh/acme.sh" ]; then
     echo "Installing acme.sh..."
-    curl -fsSL https://get.acme.sh | sh -s email=root@localhost
+    curl -fsSL https://get.acme.sh | sh -s email=root@example.com
 fi
 
 INSTALL_DIR="/opt/linux-toolbox"
