@@ -524,12 +524,9 @@ main() {
         restart)
             restart_service
             ;;
-        status)
-            show_status
-            ;;
-        password|change-password)
-            change_management_password
-            ;;
+        info)
+            show_info
+            ;
         help|--help|-h)
             cat <<EOF
 CLIProxyAPI 管理脚本
@@ -540,9 +537,10 @@ CLIProxyAPI 管理脚本
   $0 stop                  停止服务
   $0 restart               重启服务
   $0 status                查看状态
+  $0 info                  查看访问地址和管理信息
   $0 password              修改管理密码
 EOF
-            ;;
+            ;
         *)
             if [[ $# -eq 1 ]]; then
                 install_or_update_cliproxyapi "$1"
@@ -550,7 +548,7 @@ EOF
                 log_error "未知命令: $cmd"
                 exit 1
             fi
-            ;;
+            ;
     esac
 }
 
