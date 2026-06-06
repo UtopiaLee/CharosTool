@@ -9,6 +9,16 @@ log_info() {
     echo "[INFO] $1"
 }
 
+log_success() {
+    logger -t linux-toolbox "[SUCCESS] $1"
+    echo "[SUCCESS] $1"
+}
+
+log_warning() {
+    logger -t linux-toolbox "[WARNING] $1"
+    echo "[WARNING] $1"
+}
+
 log_error() {
     logger -t linux-toolbox "[ERROR] $1"
     echo "[ERROR] $1" >&2
