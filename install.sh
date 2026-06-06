@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Get the directory where this script resides (absolute path)
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+
 # Main entry point for Linux Toolbox
 echo "=== Welcome to Linux Toolbox Installer ==="
 
@@ -13,15 +16,15 @@ fi
 
 # 2. Run SSL Request
 echo "--- Requesting SSL Certificate ---"
-./bin/request_ssl.sh "$DOMAIN"
+"$SCRIPT_DIR/bin/request_ssl.sh" "$DOMAIN"
 
 # 3. Run Proxy API Install
 echo "--- Installing/Configuring Proxy API ---"
-./bin/install_proxy.sh "$DOMAIN"
+"$SCRIPT_DIR/bin/install_proxy.sh" "$DOMAIN"
 
 # 4. Create Shortcut
 echo "--- Setting up global shortcut 'charos' ---"
-sudo ln -sf "$PWD/bin/menu.sh" /usr/local/bin/charos
+sudo ln -sf "$SCRIPT_DIR/bin/menu.sh" /usr/local/bin/charos
 sudo chmod +x /usr/local/bin/charos
 
 echo "=== Installation Complete ==="
