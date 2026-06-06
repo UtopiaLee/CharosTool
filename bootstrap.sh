@@ -14,13 +14,12 @@ echo "Installing Linux Toolbox to $INSTALL_DIR..."
 
 if [ -d "$INSTALL_DIR" ]; then
     echo "Updating existing installation..."
+    cd /tmp
     sudo rm -rf "$INSTALL_DIR"
-    echo "Cloning repository..."
-    sudo git clone https://github.com/UtopiaLee/CharosTool.git "$INSTALL_DIR"
-else
-    echo "Cloning repository..."
-    sudo git clone https://github.com/UtopiaLee/CharosTool.git "$INSTALL_DIR"
 fi
+
+echo "Cloning repository..."
+sudo git clone https://github.com/UtopiaLee/CharosTool.git "$INSTALL_DIR"
 
 echo "Starting installer..."
 sudo chmod +x "$INSTALL_DIR/install.sh"
