@@ -11,11 +11,15 @@ if ! command -v acme.sh &> /dev/null; then
 fi
 
 if [ "$#" -ne 1 ]; then
-    log_error "Usage: $0 <domain_name>"
-    exit 1
+    read -p "Enter domain name: " DOMAIN
+else
+    DOMAIN=$1
 fi
 
-DOMAIN=$1
+if [ -z "$DOMAIN" ]; then
+    log_error "Domain name is required."
+    exit 1
+fi
 CERT_PATH="/usr/tls/$DOMAIN"
 
 log_info "Attempting to request SSL certificate for $DOMAIN using acme.sh..."
