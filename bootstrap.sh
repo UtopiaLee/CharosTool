@@ -22,5 +22,4 @@ else
 fi
 
 echo "Starting installer..."
-cd "$INSTALL_DIR"
-sudo ./install.sh
+sudo "$INSTALL_DIR/install.sh"
