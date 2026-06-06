@@ -2,6 +2,12 @@
 # bootstrap.sh - Install and execute Linux Toolbox
 set -euo pipefail
 
+echo "Checking prerequisites..."
+if ! command -v git &> /dev/null || ! command -v wget &> /dev/null; then
+    echo "Installing prerequisites (git, wget)..."
+    sudo apt-get update && sudo apt-get install -y git wget
+fi
+
 INSTALL_DIR="/opt/linux-toolbox"
 
 echo "Installing Linux Toolbox to $INSTALL_DIR..."
