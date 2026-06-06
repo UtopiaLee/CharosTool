@@ -9,19 +9,20 @@ if ! command -v git &> /dev/null || ! command -v wget &> /dev/null; then
 fi
 
 INSTALL_DIR="/opt/linux-toolbox"
+REPO_URL="https://github.com/UtopiaLee/CharosTool.git"
 
 echo "Installing Linux Toolbox to $INSTALL_DIR..."
 
+# Ensure we're in a safe directory before any operations
+cd /tmp
+
 if [ -d "$INSTALL_DIR" ]; then
-    echo "Updating existing installation..."
-    cd "$INSTALL_DIR"
-    sudo git fetch origin master
-    sudo git checkout -f master
-    sudo git reset --hard origin/master
-else
-    echo "Cloning repository..."
-    sudo git clone https://github.com/UtopiaLee/CharosTool.git "$INSTALL_DIR"
+    echo "Removing old installation..."
+    sudo rm -rf "$INSTALL_DIR"
 fi
+
+echo "Cloning repository..."
+sudo git clone "$REPO_URL" "$INSTALL_DIR"
 
 echo "Starting installer..."
 sudo chmod +x "$INSTALL_DIR/install.sh"
