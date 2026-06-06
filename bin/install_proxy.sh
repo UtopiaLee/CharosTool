@@ -302,7 +302,7 @@ for line in lines:
         out.append('host: ""\n')
         continue
     if not line.startswith(' ') and stripped.startswith('port:'):
-        out.append('port: 8317\n')
+        out.append('port: 443\n')
         continue
     if not line.startswith(' ') and stripped.startswith('auth-dir:'):
         out.append('auth-dir: "~/.cli-proxy-api"\n')
@@ -477,7 +477,7 @@ install_or_update_cliproxyapi() {
     echo "安装目录: ${CLIPROXY_DIR}"
     echo "配置文件: ${config_file}"
     echo "服务名称: ${SERVICE_NAME}"
-    echo "管理地址: https://<你的域名>:8317"
+    echo "管理地址: https://<你的域名>/management.html (443)"
     echo "管理密码: $(grep -E '^  secret-key:' "$config_file" | head -1 | awk -F': ' '{print $2}' | tr -d '"')"
 }
 
@@ -526,7 +526,7 @@ main() {
             ;;
         info)
             show_info
-            ;
+            ;;
         help|--help|-h)
             cat <<EOF
 CLIProxyAPI 管理脚本
@@ -540,7 +540,7 @@ CLIProxyAPI 管理脚本
   $0 info                  查看访问地址和管理信息
   $0 password              修改管理密码
 EOF
-            ;
+            ;;
         *)
             if [[ $# -eq 1 ]]; then
                 install_or_update_cliproxyapi "$1"
