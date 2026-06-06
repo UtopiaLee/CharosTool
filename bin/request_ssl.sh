@@ -33,9 +33,10 @@ log_info "Attempting to request SSL certificate for $DOMAIN using acme.sh..."
 # Create storage directory
 sudo mkdir -p "$CERT_PATH"
 
+# Force Let's Encrypt to avoid ZeroSSL EAB requirements.
 # Issue the certificate first, then install the files separately.
-if sudo "$ACME_BIN" --issue --standalone -d "$DOMAIN"; then
-    if sudo "$ACME_BIN" --install-cert -d "$DOMAIN" \
+if sudo "$ACME_BIN" --server letsencrypt --issue --standalone -d "$DOMAIN"; then
+    if sudo "$ACME_BIN" --server letsencrypt --install-cert -d "$DOMAIN" \
         --cert-file "$CERT_PATH/$DOMAIN.cer" \
         --key-file "$CERT_PATH/$DOMAIN.key" \
         --fullchain-file "$CERT_PATH/fullchain.cer"; then
