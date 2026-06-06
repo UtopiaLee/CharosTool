@@ -2,6 +2,8 @@
 # bootstrap.sh - Install and execute Linux Toolbox
 set -euo pipefail
 
+cd /tmp
+
 echo "Checking prerequisites..."
 if ! command -v git &> /dev/null || ! command -v wget &> /dev/null; then
     echo "Installing prerequisites (git, wget)..."
