@@ -16,10 +16,12 @@ fi
 
 # 2. Run SSL Request
 echo "--- Requesting SSL Certificate ---"
+chmod +x "$SCRIPT_DIR/bin/request_ssl.sh"
 "$SCRIPT_DIR/bin/request_ssl.sh" "$DOMAIN"
 
 # 3. Run Proxy API Install
 echo "--- Installing/Configuring Proxy API ---"
+chmod +x "$SCRIPT_DIR/bin/install_proxy.sh"
 "$SCRIPT_DIR/bin/install_proxy.sh" "$DOMAIN"
 
 # 4. Create Shortcut

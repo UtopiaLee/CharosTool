@@ -23,4 +23,5 @@ fi
 
 echo "Starting installer..."
 sudo chmod +x "$INSTALL_DIR/install.sh"
+sudo chmod +x "$INSTALL_DIR/bin"/*.sh
 sudo "$INSTALL_DIR/install.sh"
