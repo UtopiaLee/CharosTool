@@ -27,14 +27,22 @@ if [ -z "$DOMAIN" ]; then
 fi
 
 CERT_PATH="/usr/tls/$DOMAIN"
+ACME_HOME="/root/.acme.sh"
+ACCOUNT_CONF="$ACME_HOME/account.conf"
 
 log_info "Attempting to request SSL certificate for $DOMAIN using acme.sh..."
 
-# Create storage directory
+# Ensure storage directory exists
 sudo mkdir -p "$CERT_PATH"
 
-# Ensure account email is valid so registration won't fail on a stale localhost address.
+# Fix any stale account email before attempting to register or issue.
+if [ -f "$ACCOUNT_CONF" ]; then
+    sudo sed -i "s/^ACCOUNT_EMAIL=.*/ACCOUNT_EMAIL='root@example.com'/" "$ACCOUNT_CONF" || true
+fi
+
+# Make sure the account email is valid so registration does not fail.
 sudo "$ACME_BIN" --update-account -m root@example.com >/dev/null 2>&1 || true
+sudo "$ACME_BIN" --server letsencrypt --register-account -m root@example.com >/dev/null 2>&1 || true
 
 # Force Let's Encrypt to avoid ZeroSSL EAB requirements.
 # Issue the certificate first, then install the files separately.
