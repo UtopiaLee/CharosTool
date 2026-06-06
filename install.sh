@@ -19,4 +19,10 @@ echo "--- Requesting SSL Certificate ---"
 echo "--- Installing/Configuring Proxy API ---"
 ./bin/install_proxy.sh "$DOMAIN"
 
+# 4. Create Shortcut
+echo "--- Setting up global shortcut 'charos' ---"
+sudo ln -sf "$PWD/bin/menu.sh" /usr/local/bin/charos
+sudo chmod +x /usr/local/bin/charos
+
 echo "=== Installation Complete ==="
+echo "You can now run 'charos' to manage your toolbox."
