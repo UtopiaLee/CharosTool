@@ -6,23 +6,23 @@ TOOLBOX_DIR="/opt/linux-toolbox"
 
 while true; do
     echo "=================================="
-    echo "   CharosTool Menu"
+    echo "      CharosTool 工具菜单"
     echo "=================================="
-    echo "1. Request SSL Certificate"
-    echo "2. Install/Configure Proxy API"
-    echo "3. Update Toolbox"
-    echo "4. Health Check"
-    echo "5. Exit"
+    echo "1. 申请 SSL 证书"
+    echo "2. 安装/配置 Proxy API"
+    echo "3. 更新工具箱"
+    echo "4. 健康检查"
+    echo "5. 退出"
     echo "=================================="
-    read -p "Select an option [1-5]: " option
+    read -p "请选择一个选项 [1-5]: " option
     echo ""
     case $option in
         1)
-            read -p "Enter domain name: " domain
+            read -p "请输入域名: " domain
             sudo "$TOOLBOX_DIR/bin/request_ssl.sh" "$domain"
             ;;
         2)
-            read -p "Enter domain name: " domain
+            read -p "请输入域名: " domain
             sudo "$TOOLBOX_DIR/bin/install_proxy.sh" "$domain"
             ;;
         3)
@@ -32,13 +32,13 @@ while true; do
             "$TOOLBOX_DIR/bin/health_check.sh"
             ;;
         5)
-            echo "Exiting..."
+            echo "正在退出..."
             exit 0
             ;;
         *)
-            echo "Invalid option. Please try again."
+            echo "无效选项，请重新选择。"
             ;;
     esac
     echo ""
-    read -p "Press Enter to continue..."
+    read -p "按 Enter 键继续..."
 done
