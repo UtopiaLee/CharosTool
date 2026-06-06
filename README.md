@@ -4,21 +4,24 @@ A collection of Bash tools for system administration tasks.
 
 ## Deployment & Usage
 
-### 1. Initial Setup
-Clone the repository onto your Linux server:
+### One-Line Installation
+Run the following command to install/update and run the Linux Toolbox:
+
 ```bash
-sudo git clone https://github.com/UtopiaLee/CharosTool.git /opt/linux-toolbox
+bash <(wget -qO- https://raw.githubusercontent.com/UtopiaLee/CharosTool/master/bootstrap.sh)
 ```
 
-### 2. All-in-One Installation
-For a streamlined experience, run the main installer script. It will interactively guide you through requesting an SSL certificate and configuring your Proxy API:
+## Tools
+All tools are located in `bin/`.
+
+### 1. SSL Certificate Request
+Requests a certificate for a domain using `acme.sh` and installs it to `/usr/tls/<domain>`.
 ```bash
-cd /opt/linux-toolbox
-sudo ./install.sh
+/opt/linux-toolbox/bin/request_ssl.sh [domain]
 ```
 
-### 3. Updating
-To pull the latest changes from GitHub:
+### 2. Proxy API Installation
+Configures SSL for the Proxy API.
 ```bash
-/opt/linux-toolbox/bin/update_toolbox.sh
+/opt/linux-toolbox/bin/install_proxy.sh [domain]
 ```
