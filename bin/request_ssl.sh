@@ -33,6 +33,9 @@ log_info "Attempting to request SSL certificate for $DOMAIN using acme.sh..."
 # Create storage directory
 sudo mkdir -p "$CERT_PATH"
 
+# Ensure account email is valid so registration won't fail on a stale localhost address.
+sudo "$ACME_BIN" --update-account -m root@example.com >/dev/null 2>&1 || true
+
 # Force Let's Encrypt to avoid ZeroSSL EAB requirements.
 # Issue the certificate first, then install the files separately.
 if sudo "$ACME_BIN" --server letsencrypt --issue --standalone -d "$DOMAIN"; then
